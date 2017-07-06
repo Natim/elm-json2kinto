@@ -1,0 +1,31 @@
+{
+  "name": "elm-json2xls-examples",
+  "version": "1.0.0",
+  "description": "Examples using the elm-json2xls component.",
+  "scripts": {
+    "clean": "rm -fr build && mkdir -p build && npm run bundle-json2xls && cp index.html ports.js build/",
+    "bundle-json2xls": "browserify node_modules/json2xls/lib/json2xls.js --standalone json2xls -o  build/json2xls.bundle.js",
+    "build": "npm run clean && node_modules/.bin/elm-make Main.elm --output=build/app.js",
+    "debug": "npm run clean && node_modules/.bin/elm-live Main.elm --output=build/app.js --dir=build -- --debug",
+    "live": "npm run clean && node_modules/.bin/elm-live Main.elm --output=build/app.js --dir=build",
+    "publish-to-gh-pages": "npm run clean && npm run build && node_modules/.bin/gh-pages --dist build/ && echo 'deployed to https://natim.github.io/elm-json2xls/'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Natim/elm-json2xls.git"
+  },
+  "author": "The Kinto team",
+  "license": "MPL",
+  "bugs": {
+    "url": "https://github.com/Natim/elm-json2xls/issues"
+  },
+  "homepage": "https://github.com/Natim/elm-json2xls#readme",
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "elm": "^0.18.0",
+    "elm-live": "^2.6.0",
+    "elm-test": "^0.18.3",
+    "json2xls": "^0.1.2",
+    "gh-pages": "^0.11.0"
+  }
+}
