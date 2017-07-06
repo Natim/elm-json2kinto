@@ -1,10 +1,9 @@
-module Main exposing (..)
+port module Main exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Encode as Encode
-import Json2Xls
 
 
 type Msg
@@ -43,7 +42,7 @@ init =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Json2Xls.builtSub XlsBuilt
+        [ xlsBuilt XlsBuilt
         ]
 
 
@@ -55,7 +54,7 @@ update msg model =
                 data =
                     Encode.list <| List.map encodeRecord model.records
             in
-                ( model, Json2Xls.buildXls data )
+                ( model, buildXls data )
 
         XlsBuilt xls ->
             ( { model | xls = Just xls }, Cmd.none )
@@ -97,3 +96,9 @@ main =
         , update = update
         , subscriptions = subscriptions
         }
+
+
+port buildXls : Encode.Value -> Cmd msg
+
+
+port xlsBuilt : (String -> msg) -> Sub msg
