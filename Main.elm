@@ -31,7 +31,7 @@ init : ( Model, Cmd Msg )
 init =
     ( { records =
             [ { title = "Bonjour", content = "les amis" }
-            , { title = "Bonsoir", content = "Mariane" }
+            , { title = "Bonsoir", content = "Marianne" }
             ]
       , xls = Nothing
       }
